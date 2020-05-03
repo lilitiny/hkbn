@@ -13,6 +13,58 @@ followers = db.Table(
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
 
+class permission(db.Model):
+    userID = db.Column(db.Integer,db.ForeignKey('user.id'), primary_key=True)
+    userName = db.Column(db.VARCHAR(50),db.ForeignKey('user.username'))
+    permissionLevel = db.Column(db.VARCHAR(50))
+
+class MyTVSuper(db.Model):
+    PlanID = db.Column(db.Integer, primary_key=True)
+    PlanLevel = db.Column(db.VARCHAR(20))
+    channel = db.Column(db.VARCHAR(100))
+
+class Location(db.Model):
+    Street = db.Column(db.String(100), primary_key=True)
+    support = db.Column(db.Boolean)
+
+    def check_location(self, Street):
+        return
+class ReferralRewards(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    DesignatedService = db.Column(db.VARCHAR(100))
+    Referrers = db.Column(db.Integer)
+
+
+
+class GlobalTalk(db.Model):
+    Function = db.Column(db.VARCHAR(100),primary_key=True)
+
+class EService(db.Model):
+    ServiceID = db.Column(db.Integer, primary_key=True)
+    ServiceName = db.Column(db.Integer)
+
+
+class SupportTel(db.Model):
+    Telno = db.Column(db.Integer, primary_key=True)
+    Service = db.Column(db.VARCHAR(20))
+
+class Plan(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Pname = db.Column(db.VARCHAR(20))
+    Price = db.Column(db.Integer)
+    Speed = db.Column(db.VARCHAR(5))
+
+class MobPlan(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    Pname = db.Column(db.VARCHAR(20))
+    Price = db.Column(db.Integer)
+    Data = db.Column(db.VARCHAR(10))
+
+class Pay(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    planid = db.Column(db.VARCHAR)
+    Paydate = db.Column(db.DateTime)
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
