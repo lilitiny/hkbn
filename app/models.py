@@ -141,3 +141,30 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+
+class Item(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    item = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Date(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_date = db.Column(db.String(100))
+    transaction_time = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class SelectedDate(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    transaction_date = db.Column(db.String(100))
+    transaction_time = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+    
+
+
+
+

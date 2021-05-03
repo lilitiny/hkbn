@@ -3,7 +3,8 @@ from flask import render_template, flash, redirect, url_for, request, g, session
 from flask_login import current_user, login_required
 from flask_babel import _, get_locale
 from app import current_app, db
-from app.main.forms import EditProfileForm, PostForm, CheckLocationForm, PriceListForm, PayForm , MobPriceListForm, RecordForm, UpgradeForm
+from app.main.forms import EditProfileForm, PostForm, CheckLocationForm, PriceListForm, PayForm,
+ MobPriceListForm, RecordForm, UpgradeForm, ItemForm, DateForm, SelectedDateForm
 from app.models import User, Post, Location, Plan, Pay, MobPlan,GlobalTalk,EService,SupportTel,ReferralRewards, MyTVSuper,permission
 from app.main import bp
 
@@ -255,3 +256,27 @@ def entertainment():
     Plan1 = MyTVSuper.query.get(1)
     Plan2 = MyTVSuper.query.get(2)
     return render_template('MyTVSuper.html', form=form,Plan1=Plan1,Plan2=Plan2)
+
+
+@bp.route('/getItem', methods=['GET', 'POST'])
+@login_required
+def getItem():
+    form = ItemForm()
+    item = db.session.query(Item).filter_by(user_id=current_user.id).all()
+    return render_template('item.html', form-form)
+
+
+@bp.route('/DateForm', methods=['GET', 'POST'])
+@login_required
+def DateForm():
+    form = DateForm()
+    item = db.session.query(Date).filter_by(user_id=current_user.id).all()
+    return render_template('date.html', form-form)
+
+
+@bp.route('/DateForm', methods=['GET', 'POST'])
+@login_required
+def SelectedDateForm():
+    form = SelectedDateForm()
+    item = db.session.query(SelectedDate).filter_by(user_id=current_user.id).all()
+    return render_template('selecteddate.html', form-form)

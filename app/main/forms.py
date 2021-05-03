@@ -4,6 +4,7 @@ from wtforms import StringField, SubmitField, \
 from wtforms.validators import ValidationError, DataRequired, Length
 from flask_babel import _, lazy_gettext as _l
 from app.models import User, Plan
+from wtforms.fields.html5 import DateField, TimeField
 
 
 class EditProfileForm(FlaskForm):
@@ -32,17 +33,21 @@ class CheckLocationForm(FlaskForm):
     loca = StringField(validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 
+
 class PriceListForm(FlaskForm):
     Speed = StringField(_l('What Speed you want? eg.100Mbps'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
+
 
 class MobPriceListForm(FlaskForm):
     Speed = StringField(_l('What Speed you want? eg.100Mbps'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 
+
 class PayForm(FlaskForm):
     planid =  StringField(_l('Please Enter Plan Name'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
+
 
 class RecordForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
@@ -50,6 +55,32 @@ class RecordForm(FlaskForm):
                              validators=[Length(min=0, max=140)])
     submit = SubmitField(_l('Submit'))
 
+
 class UpgradeForm(FlaskForm):
     planname =  StringField(_l('Please Enter Plan Name'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
+
+
+class ItemForm(FlaskForm):
+    item = SelectField(_l('Please enter your Item Object'), validators=[DataRequired()])
+    submit = SubmitField(_l('Submit'))
+
+
+class DateForm(FlaskForm):
+    transaction_date = DateField(_l('Please enter your transaction date'), format="%Y-%m-%d",
+                                 validators=[DataRequired()])
+    transaction_time = TimeField(_l('Please enter your transaction time'), format="%H:%M:%S",
+                                 validators=[DataRequired()])
+    submit = SubmitField(_l('Add'))
+
+
+class SelectedDateForm(FlaskForm):
+    transaction_date = DateField(_l('Please enter your transaction date'), format="%Y-%m-%d",
+                                 validators=[DataRequired()])
+    transaction_time = TimeField(_l('Please enter your transaction time'), format="%H:%M:%S",
+                                 validators=[DataRequired()])
+    submit = SubmitField(_l('Cancel'))
+
+
+
+
